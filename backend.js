@@ -53,6 +53,24 @@ app.get('/pcAlkatresz', (req, res) => {
     connection.end()
 })
 
+// összes nintendo tartozek
+
+app.get('/Nintendotart', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM alkatreszek WHERE alkatresz_eszkozid=2', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
+
 
 /*---------Összes eszköz kiíratása-----------*/
 
