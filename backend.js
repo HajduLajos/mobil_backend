@@ -71,6 +71,22 @@ app.get('/Nintendotart', (req, res) => {
     connection.end()
 })
 
+//összes playstation tartozék
+app.get('/Playstationtart', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM alkatreszek WHERE alkatresz_eszkozid=3', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
 
 /*---------Összes eszköz kiíratása-----------*/
 
@@ -149,6 +165,7 @@ connection.end()
 //   })
 
 //---------------------------------seged tabla lekerdez
+
 app.get('/KomponensSeged', (req, res) => {
     
   kapcsolat()
