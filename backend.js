@@ -53,6 +53,24 @@ app.get('/pcAlkatresz', (req, res) => {
     connection.end()
 })
 
+/*---------Összes pc jatek kiíratása-----------*/
+
+app.get('/PcJatekok', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM jatekok WHERE jatekok_eszkozid=1', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
+
 // összes nintendo tartozek
 
 app.get('/Nintendotart', (req, res) => {
@@ -77,6 +95,23 @@ app.get('/Playstationtart', (req, res) => {
   kapcsolat()
 
     connection.query('SELECT * FROM alkatreszek WHERE alkatresz_eszkozid=3', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
+
+//összes Xbox tartozék
+app.get('/XboxTart', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM alkatreszek WHERE alkatresz_eszkozid=4', (err, rows, fields) => {
     if (err) throw err
 
         console.log(rows)
