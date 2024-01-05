@@ -89,6 +89,24 @@ app.get('/Nintendotart', (req, res) => {
     connection.end()
 })
 
+/*---------Összes Ninetndo jatek kiíratása-----------*/
+
+app.get('/NintendoJatekok', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM jatekok WHERE jatekok_eszkozid=2', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
+
 //összes playstation tartozék
 app.get('/Playstationtart', (req, res) => {
     
@@ -106,12 +124,47 @@ app.get('/Playstationtart', (req, res) => {
     connection.end()
 })
 
+/*---------Összes playstation jatek kiíratása-----------*/
+
+app.get('/PlaystationJatekok', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM jatekok WHERE jatekok_eszkozid=3', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
+
 //összes Xbox tartozék
 app.get('/XboxTart', (req, res) => {
     
   kapcsolat()
 
     connection.query('SELECT * FROM alkatreszek WHERE alkatresz_eszkozid=4', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+
+
+
+    connection.end()
+})
+/*---------Összes xbox jatek kiíratása-----------*/
+
+app.get('/XboxJatekok', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM jatekok WHERE jatekok_eszkozid=4', (err, rows, fields) => {
     if (err) throw err
 
         console.log(rows)
@@ -234,6 +287,18 @@ app.get('/EszkozokSeged', (req, res) => {
     connection.end()
 })
 
+//---------kereses----------------
+app.post('/keresszoveg', (req, res) => {
+  kapcsolat()
+  
+  connection.query(`SELECT * FROM jatekok WHERE jatekok.jatekok_nev LIKE "%${req.body.bevitel1}%"`, (err, rows, fields) => {
+  if (err) throw err
+  
+  console.log(rows)
+  res.send(rows)
+  })
+  connection.end() 
+  })
 
 
 
