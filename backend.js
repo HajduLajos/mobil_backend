@@ -188,11 +188,32 @@ app.get('/eszkozok', (req, res) => {
         console.log(rows)
         res.send(rows)
     })
-
+ 
 
 
     connection.end()
 })
+
+//----Comment lekerdez---------------
+
+app.get('/Comment', (req, res) => {
+    
+  kapcsolat()
+
+    connection.query('SELECT * FROM comment', (err, rows, fields) => {
+    if (err) throw err
+
+        console.log(rows)
+        res.send(rows)
+    })
+ 
+
+
+    connection.end()
+})
+
+
+
 
 //----------Kép feltöltés-----------------------------
 
@@ -207,10 +228,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+//-------adatbazisfeltoltes---------
 app.post('/api/upload', upload.array('photo', 3), (req, res) => {
   console.log('file', req.files);
   console.log('body', req.body);
-//-------adatbazisfeltoltes---------
 kapcsolat()
   
 // connection.query(`INSERT INTO alkatreszek VALUES (NULL,'${req.body.bevitel1}', '${req.body.bevitel2}', ${req.body.bevitel3}, ${req.body.bevitel4}, '${req.file[0].filename}', ${req.body.bevitel6}, ${req.body.bevitel7} )`, (err, rows, fields) => {
@@ -228,31 +249,6 @@ else{
 connection.end() 
 //-----vege---------------
 });
-
-//INSERT INTO alkatreszek VALUES (NULL, 'alma', '2023-12-21', 10, 450000000, 'a.jpg', 2, 2);
-
-
-//------------------------- insert into
-
-// app.post('/felvitelalkatresz', (req, res) => {
-//   kapcsolat()
-  
-//   connection.query(`INSERT INTO alkatreszek VALUES (NULL,'${req.body.bevitel1}', '${req.body.bevitel2}', ${req.body.bevitel3}, ${req.body.bevitel4}, '${req.body.bevitel5}', ${req.body.bevitel6}, ${req.body.bevitel7} )`, (err, rows, fields) => {
-//   if (err){
-//     console.log("Hiba")
-//     res.send("Hiba")
-//   }
-//   else{
-//     console.log("Sikeres felvitel")
-//     res.send("Sikeres felvitel")
-//   }
-  
-  
-//   })
-//   connection.end() 
-//   })
-
-//---------------------------------seged tabla lekerdez
 
 app.get('/KomponensSeged', (req, res) => {
     
